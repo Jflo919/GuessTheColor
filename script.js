@@ -13,22 +13,23 @@ function setColor(button, red, green, blue){
 function makeColorValue() {
     return Math.round(Math.random() * 255);
 }
-
-var answerButton = Math.round(Math.random() * (buttons.length - 1));
+function start() {
+  answerMessage.innerHTML = "";  
+  var answerButton = Math.round(Math.random() * (buttons.length - 1));
 // initialize three variables, add for loop here!
-for (var i = 0; i< buttons.length; i++) {
+  for (var i = 0; i< buttons.length; i++) {
   
-   let red = makeColorValue();
-   let green = makeColorValue();
-   let blue = makeColorValue();
+     let red = makeColorValue();
+     let green = makeColorValue();
+     let blue = makeColorValue();
 
 
-setColor(buttons[i], red, green, blue);
+  setColor(buttons[i], red, green, blue);
 
-if (i === answerButton) {
-    heading.innerHTML = `(${red}, ${green}, ${blue})`;
-  }
-}
+  if (i === answerButton) {
+      heading.innerHTML = `(${red}, ${green}, ${blue})`;
+    }
+  
 
 
 // Still need to
@@ -37,10 +38,20 @@ if (i === answerButton) {
 // Ensure that when the player clicks on the winning button, a message tells them that they won
 
 // eventlistener, 'this' refers to that the button has indeed been clicked
-buttons[i].addEventListener('click', function () {
-    if (this === buttons[answerButton]) {
-        answerMessage.innerHTML = "You are not wrong, so you might be correct!";
-    } else {
-        answerMessage.innerHTML = "You have chosen poorly, try again!";
-    }
-});
+  buttons[i].addEventListener('click', function () {
+      if (this === buttons[answerButton]) {
+          answerMessage.innerHTML = "You are not wrong, so you might be correct!";
+       var winningColor =  document.getElementByTagName('body');
+       winningColor.setAttribute('style', 
+'background-color: blue;');
+      } else {
+          answerMessage.innerHTML = "You have chosen poorly, try again!";
+      }
+  });
+ }
+} 
+
+// reset button eventListener
+document.getElementById('resetButton').addEventListener('click', start);
+
+start();
