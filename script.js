@@ -41,9 +41,7 @@ function start() {
   buttons[i].addEventListener('click', function () {
       if (this === buttons[answerButton]) {
           answerMessage.innerHTML = "You are not wrong, so you might be correct!";
-       var winningColor =  document.getElementByTagName('body');
-       winningColor.setAttribute('style', 
-'background-color: blue;');
+          answerMessage.setAttribute("style", "font: yellow;"); // you didn't append child?
       } else {
           answerMessage.innerHTML = "You have chosen poorly, try again!";
       }
